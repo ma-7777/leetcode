@@ -1,0 +1,36 @@
+class Solution{
+public:
+    int minDepth(TreeNode*root){
+        if (root == nullptr)
+        {
+            return 0;
+        }
+        queue<TreeNode*> q;
+        q.push(root);
+        int deep = 1;
+        while(root != nullptr)
+        {
+            int i = q.size();
+            while (i-- != 0)
+            {
+                TreeNode * curr;
+                curr = q.front();
+                q.pop();
+                if (curr->left)
+                {
+                    q.push(curr->left);
+                }
+                if (curr->right)
+                {
+                    q.push(curr->right);
+                }
+                if (curr->left == nullptr  && curr->right == nullptr)
+                {
+                    return deep;
+                }
+            }
+            deep++;
+        }
+        return deep;
+    }    
+};
